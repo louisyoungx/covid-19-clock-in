@@ -8,7 +8,7 @@
 >
 > 本仓库内容仅供学习交流使用，请不要依赖自动签到，确保自己提交的信息真实有效。参与抗疫人人有责，请在使用程序前仔细阅读代码注释和本文档，请勿将此程序用于学习交流以外的任何用途，否则由此引发的一切后果由使用者本人承担。
 
-本项目基于原作者JetXi<a href='https://github.com/JetXi/JiangXi-University-Antiepidemic-Batch-Clock-In'>江西高校支付宝校园防疫自动签到</a>新增了发送消息功能，将要批量签到的同学信息填入excel表中，注意不要多出空格或其他字符，保存后运行程序即可完成批量签到。选用csv主要是为了方便Linux环境下操作，没有安装excel的同学也可以直接使用记事本编辑，以逗号分隔各数据项即可。
+本项目基于原作者JetXi<a href='https://github.com/JetXi/JiangXi-University-Antiepidemic-Batch-Clock-In'>江西高校支付宝校园防疫自动签到</a>适配了TinyServer框架，新增定时执行调度器，记录，发送消息功能，记录查看，将要批量签到的同学信息填入excel表中，注意不要多出空格或其他字符，保存后运行程序即可完成批量签到。选用csv主要是为了方便Linux环境下操作，没有安装excel的同学也可以直接使用记事本编辑，以逗号分隔各数据项即可。
 
 使用mirai机器人框架推送通知
 

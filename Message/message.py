@@ -1,6 +1,9 @@
 import json
 import requests
 
+from Logger.logger import logger
+
+
 def sendFriendMessage(message, userid):
     try:
         URL = "www.louisyoung.site:8088"
@@ -21,7 +24,7 @@ def sendFriendMessage(message, userid):
         mes = message.replace("\n", " ")
         if len(mes) > 10:
             mes = mes[:10] + "···"
-        print("Send {}".format(mes))
+        logger.info("Send {}".format(mes))
 
 
         # print(sender.request.url)
@@ -52,7 +55,7 @@ def sendGroupMessage(message, groupid):
         mes = message.replace("\n", " ")
         if len(mes) > 10:
             mes = mes[:10] + "···"
-        print("Send {}".format(mes))
+        logger.info("Send {}".format(mes))
 
         # print(sender.request.url)
         # sender.raise_for_status()
