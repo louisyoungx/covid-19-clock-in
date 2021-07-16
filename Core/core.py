@@ -3,10 +3,13 @@ import json
 import requests
 
 from Message.message import sendFriendMessage
+from Config.settings import config
 
 
 def main():
-    with open('./info.csv', encoding='utf-8') as info:
+    path = config.path()
+    path += '/Core/info.csv'
+    with open(path, encoding='utf-8') as info:
         reader = csv.reader(info)
         for stu in reader:
             if stu[0] != '学校代码':
