@@ -38,10 +38,9 @@ class Timer(object):
         real_datetime = self.realDate()  # 当前的时间（日期）
         real_mstime = self.dateMSTime(real_datetime)  # 当前的时间（毫秒）
         today_task_datetime = self.todayTaskTime()  # 今天任务时间（日期）
-        logger.info(today_task_datetime)
         today_task_mstime = self.dateMSTime(today_task_datetime)  # 今天任务时间（毫秒）
         wait_time = today_task_mstime - real_mstime  # 获取当前时间与任务的时间差
-        logger.info("Waiting to Start Mission -> {} Seconds".format(wait_time))
+        logger.info("Waiting to Start Mission -> {}".format(today_task_datetime))
         time.sleep(wait_time)  # 线程休眠阻塞任务
         self.task()  # 阻塞结束执行
         logger.info("Today's Mission Completed")
