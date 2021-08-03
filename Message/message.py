@@ -10,7 +10,7 @@ class Message(object):
         self.URL = config.settings("Message", "TARGET_SERVER")
     
     def sendFriendMessage(self, message, userid):
-        if 1:
+        try:
             path = "sendFriendMessage"
             URL = "http://{}/{}".format(self.URL, path)
     
@@ -32,7 +32,9 @@ class Message(object):
                 print(URL)
                 sender.raise_for_status()
                 print(sender.text)
-
+        except:
+            logger.error("Message Send Failed")
+            return False
 
     
     
