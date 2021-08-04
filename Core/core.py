@@ -1,9 +1,12 @@
 import csv
 import json
 import requests
+import random
+import time
 
 from Message.message import sendFriendMessage
 from Config.settings import config
+from Logger.logger import logger
 
 
 def main():
@@ -12,6 +15,13 @@ def main():
     with open(path, encoding='utf-8') as info:
         reader = csv.reader(info)
         for stu in reader:
+            debug = config.settings("Debug", "DEBUG")
+            if not debug:
+                randtime = random.randint(1 * 60, 10 * 60)
+                logger.info("Waiting for {} Secends".format(randtime))
+                time.sleep(randtime)
+            else:
+                time.sleep(5)
             if stu[0] != '学校代码':
                 # 登录页面，提交学校代码和学号，用于获取cookie，直接get请求
                 loginurl = f'https://fxgl.jx.edu.cn/{stu[0]}/public/homeQd?loginName={stu[1]}&loginType=0'

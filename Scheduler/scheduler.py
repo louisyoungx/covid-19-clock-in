@@ -45,6 +45,7 @@ class Timer(object):
         self.task()  # 阻塞结束执行
         logger.info("Today's Mission Completed")
 
+
     def realDate(self):
         '''
         获取当前的日期与时间
@@ -127,7 +128,7 @@ class Timer(object):
             logger.info("Time Pass - Now Time: {} TaskTime: {}".format(real_datetime, today_task_datetime))
             return True
         else:
-            logger.info("Time Waiting - TaskTime: {}".format(real_datetime, today_task_datetime))
+            logger.info("Time Waiting - RealTime: {}".format(real_datetime))
             return False
 
     def dateMSTime(self, date):
