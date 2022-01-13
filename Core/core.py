@@ -61,14 +61,31 @@ def main():
                     'lat': stu[7],           # 纬度
                     'sfby': 1                  # 是否为毕业生 0:是 1:否
                 }
-                result = session.post(url=signinurl, data=data, headers=headers).text
-                # 访问接口返回的数据是json字符串，使用loads方法转换为python字典
-                statusCode = json.loads(result)['code']
                 QQ = stu[8]
-                # 根据状态码判断签到状态
-                if statusCode == 1001:
-                    sendFriendMessage("{}疫情打卡签到成功".format(stu[1]), QQ)
-                elif statusCode == 1002:
-                    sendFriendMessage("{}疫情打卡今日已签".format(stu[1]), QQ)
-                else:
+                check = False
+                times = 0
+                while not check and times < 10:
+                    if checkIn(session, signinurl, data, headers, stu, QQ):
+                        check = True
+                    else:
+                        times += 1
+                        time.sleep(5)
+                if not check:
                     sendFriendMessage("{}疫情打卡签到状态异常，请手动打卡".format(stu[1]), QQ)
+                    
+def checkIn(session, signinurl, data, headers, stu, QQ):
+    try:
+        result = session.post(url=signinurl, data=data, headers=headers).text
+        # 访问接口返回的数据是json字符串，使用loads方法转换为python字典
+        statusCode = json.loads(result)['code']
+        # 根据状态码判断签到状态
+        if statusCode == 1001:
+            sendFriendMessage("{}疫情打卡签到成功".format(stu[1]), QQ)
+            return True
+        elif statusCode == 1002:
+            sendFriendMessage("{}疫情打卡今日已签".format(stu[1]), QQ)
+            return True
+        else:
+            return False
+    except:
+        return False
